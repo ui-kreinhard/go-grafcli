@@ -15,19 +15,8 @@ type IImporter interface {
 	Download()
 }
 
-type SearchResultElement struct {
-	Id    uint64 `json:"id"`
-	Uid   string `json:"uid"`
-	Title string `json:"title"`
-	Url   string `json:"url"`
-	Slug  string `json:"slug"`
-	Type  string `json:"type"`
-}
-
 func (i *Importer) downloadSingleDashboard(searchResult types.SearchReslt) (*types.Export, error) {
 	jsonMap := make(map[string]interface{})
-
-	//output, err := utils.HttpGet("http://localhost:3000/api/dashboards/"+searchResult.Uri, "admin", "admin")
 	output, err := i.HttpClient.HttpGet("/api/dashboards/" + searchResult.Uri)
 	if err != nil {
 		return nil, err

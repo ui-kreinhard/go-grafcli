@@ -23,27 +23,11 @@ func (e *Exporter) getRegisteredDatasources() ([]types.Datasource, error) {
 	if err != nil {
 		return nil, err
 	}
-	log.Println(string(output))
 	err = json.Unmarshal(output, &registeredDatasources)
 	if err != nil {
 		return nil, err
 	}
 	return registeredDatasources, nil
-}
-
-func (e *Exporter) export(datasources []types.Datasource) error {
-	for _, datasource := range datasources {
-		dataToBeSent, err := json.Marshal(datasource)
-		if err != nil {
-			return err
-		}
-
-		_, _, err = e.HttpClient.HttpPost("/api/datasources/", string(dataToBeSent))
-		if err != nil {
-			return err
-		}
-	}
-	return nil
 }
 
 func (e *Exporter) createDatasource(datasource types.Datasource) error {
