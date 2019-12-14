@@ -9,11 +9,15 @@ So I've got the idea to implement it in go. Just one binary :)
 What it currently can do
 ===
 It can currently:
-* Import dashboards from a json file
+* Import dashboards to a json file
 ````
 /go-grafcli -mode=import-dashboards -filename=/tmp/dashboards.json -username=admin -password=admin -baseUrl="http://localhost:3000"
 ````
-* Export dashboards to a json file
+* Import single dashboard to a json file
+````
+./go-grafcli -mode=import-single-dashboard -filename=/tmp/dashboards.json -username=admin -password=admin -baseUrl="http://localhost:3000" -dashboardUri=myAwesomedashboard
+````
+* Export dashboards from a json file
 ````
 ./go-grafcli -mode=export-dashboards -filename=/tmp/dashboards.json -username=admin -password=admin -baseUrl="http://localhost:3000"
 ````

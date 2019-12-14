@@ -18,6 +18,7 @@ func main() {
 	username := flag.String("username", "", "Username")
 	password := flag.String("password", "", "Password")
 	newPassword := flag.String("newPassword", "", "new password")
+	dashboardUri := flag.String("dashboardUri", "", "single dashboard parameter")
 	flag.Parse()
 
 	httpClient := http.NewHttpClient(*baseUrl, *username, *password)
@@ -28,6 +29,10 @@ func main() {
 	case "import-dashboards":
 		i := importer.Importer{ httpClient}
 		err = i.Import(*filename)
+		break
+	case "import-single-dashboard":
+		i := importer.Importer{ httpClient}
+		err = i.ImportSingleDashboard(*filename, *dashboardUri)
 		break
 	case "export-dashboards":
 		e := exporter.Exporter{httpClient}
@@ -47,7 +52,7 @@ func main() {
 		log.Println("Changing password")
 		c := user.ChangePassword{httpClient}
 		err = c.Change(*password, *newPassword)
-		break;
+		break
 	default:
 		log.Println("Unknown cmd, doing nothing")
 		break

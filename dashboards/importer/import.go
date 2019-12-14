@@ -5,6 +5,7 @@ import (
 	"github.com/ui-kreinhard/go-grafcli/http"
 	"github.com/ui-kreinhard/go-grafcli/types"
 	"io/ioutil"
+	"strings"
 )
 
 type Importer struct{
@@ -61,4 +62,24 @@ func (i *Importer) Import(filename string) ( error) {
 		dashboards = append(dashboards, *result)
 	}
 	return writeDashboards(filename, dashboards)
+}
+
+func correctUri(uri string) string {
+	if strings.HasPrefix(uri, "db/") {
+		return uri
+	}
+	return "db/" + uri
+}
+
+func (i *Importer) ImportSingleDashboard(filename, uri string) error {
+	toDownload := types.SearchReslt{
+		Uri:   correctUri(uri),
+		Title: "",
+	}
+	export, err := i.downloadSingleDashboard(toDownload)
+	if err != nil {
+		return err
+	}
+	exports := []types.Export{*export}
+	return writeDashboards(filename, exports)
 }
