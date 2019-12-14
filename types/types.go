@@ -30,3 +30,9 @@ type Datasource struct {
 	ReadOnly    bool   `json:"readOnly"`
 	Type        string `json:"type"`
 }
+
+type NewPasswordChange struct {
+	NewPassword string `json:"newPassword"`
+	ConfirmNew  string `json:"confirmNew"`
+	OldPassword string `json:"oldPassword"`
+}

@@ -25,6 +25,10 @@ It can currently:
 ```
 /go-grafcli -mode=export-datasources -filename=/tmp/datasources.json -username=admin -password=admin -baseUrl="http://localhost:3000"
 ```
+* Change password of current user
+````
+./go-grafcli -mode=changePassword -username=admin -password=admin -baseUrl="http://localhost:3000" -newPassword=blablabla
+````
 Status
 ====
 Most probably really buggy. If it works for you - I'm really suprised :)

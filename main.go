@@ -7,6 +7,7 @@ import (
 	datasourceExport "github.com/ui-kreinhard/go-grafcli/datasources/exporter"
 	datasourceImport "github.com/ui-kreinhard/go-grafcli/datasources/importer"
 	"github.com/ui-kreinhard/go-grafcli/http"
+	"github.com/ui-kreinhard/go-grafcli/user"
 	"log"
 )
 
@@ -16,6 +17,7 @@ func main() {
 	baseUrl := flag.String("baseUrl", "", "URL of grafana")
 	username := flag.String("username", "", "Username")
 	password := flag.String("password", "", "Password")
+	newPassword := flag.String("newPassword", "", "new password")
 	flag.Parse()
 
 	httpClient := http.NewHttpClient(*baseUrl, *username, *password)
@@ -41,6 +43,11 @@ func main() {
 		e := datasourceExport.Exporter{httpClient}
 		err = e.Export(*filename)
 		break
+	case "changePassword":
+		log.Println("Changing password")
+		c := user.ChangePassword{httpClient}
+		err = c.Change(*password, *newPassword)
+		break;
 	default:
 		log.Println("Unknown cmd, doing nothing")
 		break
