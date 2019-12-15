@@ -36,3 +36,23 @@ type NewPasswordChange struct {
 	ConfirmNew  string `json:"confirmNew"`
 	OldPassword string `json:"oldPassword"`
 }
+
+type NotificationChannelSettings struct {
+	Addresses   string `json:"addresses"`
+	AutoResolve bool   `json:"autoResolve"`
+	HttpMethod  string `json:"httpMethod"`
+	UploadImage bool   `json:"uploadImage"`
+}
+type NotificationChannel struct {
+	SendReminder          bool                        `json:"sendReminder"`
+	Frequency             string                      `json:"frequency"`
+	Created               string                      `json:"created"`
+	Settings              NotificationChannelSettings `json:"settings"`
+	Name                  string                      `json:"name"`
+	Type                  string                      `json:"type"`
+	IsDefault             bool                        `json:"isDefault"`
+	Updated               string                      `json:"updated"`
+	Id                    int                         `json:"id"`
+	Uid                   string                      `json:"uid"`
+	DisableResolveMessage bool                        `json:"disableResolveMessage"`
+}
