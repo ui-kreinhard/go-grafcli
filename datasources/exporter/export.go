@@ -36,7 +36,7 @@ func (e *Exporter) createDatasource(datasource types.Datasource) error {
 		return err
 	}
 
-	_, _, err = e.HttpClient.HttpPost("http://localhost:3000/api/datasources/", string(dataToBeSent))
+	_, _, err = e.HttpClient.HttpPost("/api/datasources/", string(dataToBeSent))
 	return err
 }
 
@@ -46,7 +46,7 @@ func (e *Exporter) updateDatasource(datasource types.Datasource) error {
 		return err
 	}
 
-	_, _, err = e.HttpClient.HttpPut("http://localhost:3000/api/datasources/"+strconv.FormatUint(datasource.Id, 10), string(dataToBeSent))
+	_, _, err = e.HttpClient.HttpPut("/api/datasources/"+strconv.FormatUint(datasource.Id, 10), string(dataToBeSent))
 	return err
 }
 
