@@ -40,6 +40,8 @@ type NewPasswordChange struct {
 type NotificationChannelSettings struct {
 	Addresses   string `json:"addresses"`
 	AutoResolve bool   `json:"autoResolve"`
+	Bottoken    string `json:"bottoken"`
+	Chatid      string `json:"chatid"`
 	HttpMethod  string `json:"httpMethod"`
 	UploadImage bool   `json:"uploadImage"`
 }
@@ -55,4 +57,16 @@ type NotificationChannel struct {
 	Id                    uint64                      `json:"id"`
 	Uid                   string                      `json:"uid"`
 	DisableResolveMessage bool                        `json:"disableResolveMessage"`
+}
+
+type Folder struct {
+	Uid       string   `json:"uid"`
+	Title     string   `json:"title"`
+	Uri       string   `json:"uri"`
+	Url       string   `json:"url"`
+	Type      string   `json:"type"`
+	IsStarred bool     `json:"isStarred"`
+	Slug      string   `json:"slug"`
+	Tags      []string `json:"tags"`
+	Version   uint64   `json:"version"`
 }

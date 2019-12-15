@@ -8,7 +8,8 @@ import (
 	datasourceImport "github.com/ui-kreinhard/go-grafcli/datasources/importer"
 	notificationChannelsImport "github.com/ui-kreinhard/go-grafcli/notificationChannels/importer"
 	notificationChannelsExport "github.com/ui-kreinhard/go-grafcli/notificationChannels/exporter"
-
+	folderImport "github.com/ui-kreinhard/go-grafcli/folders/importer"
+	folderExport "github.com/ui-kreinhard/go-grafcli/folders/exporter"
 	"github.com/ui-kreinhard/go-grafcli/http"
 	"github.com/ui-kreinhard/go-grafcli/user"
 	"log"
@@ -61,6 +62,15 @@ func main() {
 		e := datasourceExport.Exporter{httpClient}
 		err = e.Export(*filename)
 		break
+	case "import-folders":
+		log.Println("importing folders")
+		i := folderImport.Importer{httpClient}
+		err = i.Import(*filename)
+		break
+	case "export-folders":
+		log.Println("exporting folders")
+		e := folderExport.Export{httpClient}
+		err = e.Export(*filename)
 	case "changePassword":
 		log.Println("Changing password")
 		c := user.ChangePassword{httpClient}
