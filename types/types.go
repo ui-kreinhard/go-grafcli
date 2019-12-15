@@ -52,7 +52,7 @@ type NotificationChannel struct {
 	Type                  string                      `json:"type"`
 	IsDefault             bool                        `json:"isDefault"`
 	Updated               string                      `json:"updated"`
-	Id                    int                         `json:"id"`
+	Id                    uint64                      `json:"id"`
 	Uid                   string                      `json:"uid"`
 	DisableResolveMessage bool                        `json:"disableResolveMessage"`
 }

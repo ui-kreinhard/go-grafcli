@@ -6,7 +6,8 @@ import (
 	"github.com/ui-kreinhard/go-grafcli/dashboards/importer"
 	datasourceExport "github.com/ui-kreinhard/go-grafcli/datasources/exporter"
 	datasourceImport "github.com/ui-kreinhard/go-grafcli/datasources/importer"
-	notificationChannels "github.com/ui-kreinhard/go-grafcli/notificationChannels/importer"
+	notificationChannelsImport "github.com/ui-kreinhard/go-grafcli/notificationChannels/importer"
+	notificationChannelsExport "github.com/ui-kreinhard/go-grafcli/notificationChannels/exporter"
 
 	"github.com/ui-kreinhard/go-grafcli/http"
 	"github.com/ui-kreinhard/go-grafcli/user"
@@ -47,8 +48,13 @@ func main() {
 		break
 	case "import-notificationchannels":
 		log.Println("importing notification channels", *filename)
-		i:= notificationChannels.Importer{httpClient}
+		i:= notificationChannelsImport.Importer{httpClient}
 		err = i.Import(*filename)
+		break
+	case "export-notificationchannels":
+		log.Println("exporting notification channels", *filename)
+		e := notificationChannelsExport.Exporter{httpClient}
+		err = e.Export(*filename)
 		break
 	case "export-datasources":
 		log.Println("exporting ds")
