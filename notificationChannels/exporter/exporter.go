@@ -29,7 +29,7 @@ func (e *Exporter) getRegisteredNotificationChannels() ([]types.NotificationChan
 
 func contains(registeredNotificationChannels []types.NotificationChannel, notificationChannel types.NotificationChannel) bool {
 	for _, registereDataSource := range registeredNotificationChannels {
-		if registereDataSource.Id == notificationChannel.Id {
+		if registereDataSource.Uid== notificationChannel.Uid {
 			return true
 		}
 	}
@@ -55,8 +55,8 @@ func (e *Exporter) updateNotificationChannel(notificationChannel types.Notificat
 }
 
 func (e *Exporter) decideToUpdateOrCreate(registeredNotificationChannels, notificationChannelsToExport []types.NotificationChannel) error{
+	err := errors.New("")
 	for _, notificationChannelToExport := range notificationChannelsToExport {
-		err := errors.New("")
 		if contains(registeredNotificationChannels, notificationChannelToExport) {
 			log.Println("updating")
 			err = e.updateNotificationChannel(notificationChannelToExport)
@@ -64,11 +64,8 @@ func (e *Exporter) decideToUpdateOrCreate(registeredNotificationChannels, notifi
 			log.Println("creating")
 			err = e.createNotificationChannel(notificationChannelToExport)
 		}
-		if err != nil {
-			return err
-		}
 	}
-	return nil
+	return err
 }
 
 func (e *Exporter) Export(filename string) error {
