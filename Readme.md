@@ -11,7 +11,7 @@ What it currently can do
 It can currently:
 * Import dashboards to a json file
 ````
-/go-grafcli -mode=import-dashboards -filename=/tmp/dashboards.json -username=admin -password=admin -baseUrl="http://localhost:3000"
+./go-grafcli -mode=import-dashboards -filename=/tmp/dashboards.json -username=admin -password=admin -baseUrl="http://localhost:3000"
 ````
 * Import single dashboard to a json file
 ````
@@ -23,11 +23,11 @@ It can currently:
 ````
 * Export datasources from a json file
 ````
-/go-grafcli -mode=export-datasources -filename=/tmp/datasources.json -username=admin -password=admin -baseUrl="http://localhost:3000"
+./go-grafcli -mode=export-datasources -filename=/tmp/datasources.json -username=admin -password=admin -baseUrl="http://localhost:3000"
 ````
 * Import datasources from a json file
 ```
-/go-grafcli -mode=export-datasources -filename=/tmp/datasources.json -username=admin -password=admin -baseUrl="http://localhost:3000"
+./go-grafcli -mode=import-datasources -filename=/tmp/datasources.json -username=admin -password=admin -baseUrl="http://localhost:3000"
 ```
 * Change password of current user
 ````
