@@ -16,7 +16,7 @@ import (
 )
 
 func main() {
-	modeOfOperation := flag.String("mode", "import", "mode of operation")
+	modeOfOperation := flag.String("mode", "", "mode of operation")
 	filename := flag.String("filename", "", "Filename to read/write")
 	baseUrl := flag.String("baseUrl", "", "URL of grafana")
 	username := flag.String("username", "", "Username")
